@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Естімейтін адамдарға арналған құрылғы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="alert-notification" id="alertNotification">
+        🚨 ҚАУІП АНЫҚТАЛДЫ! 🚨
+    </div>
+
+    <div class="container">
+        <h1>👂 Естімейтін адамдарға арналған құрылғы</h1>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('demo', this)">
+                🎤 Демо нұсқа
+            </button>
+            <button class="tab-btn" onclick="switchTab('circuit', this)">
+                🔌 Tinkercad схемасы
+            </button>
+            <button class="tab-btn" onclick="switchTab('components', this)">
+                🛠️ Компоненттер
+            </button>
+            <button class="tab-btn" onclick="switchTab('code', this)">
+                💻 Arduino коды
+            </button>
+            <button class="tab-btn" onclick="switchTab('info', this)">
+                📖 Жоба туралы
+            </button>
+        </div>
+
+        <!-- Demo Tab -->
+        <div id="demo" class="tab-content active">
+            <div class="demo-container">
+                <div class="demo-header">
+                    <div class="demo-title">🎤 Дыбысты тану режимі</div>
+                    <div class="status-indicator">
+                        <div class="status-dot" id="statusDot"></div>
+                        <span id="statusText">Тоқтатылған</span>
+                    </div>
+                </div>
+
+                <div class="language-selector">
+                    <label>🌐 Тіл таңдау:</label>
+                    <select id="languageSelect">
+                        <option value="kk-KZ">Қазақ тілі (kk-KZ)</option>
+                        <option value="ru-RU">Русский (ru-RU)</option>
+                        <option value="en-US">English (en-US)</option>
+                    </select>
+                    <span style="font-size: 0.9em; color: #888;">
+                        * Браузер тілді қолдамаса, автоматты ағылшын тілі қолданылады
+                    </span>
+                </div>
+
+                <div class="control-panel">
+                    <button class="btn btn-start" id="startBtn">
+                        ▶️ Бастау
+                    </button>
+                    <button class="btn btn-stop" id="stopBtn" disabled>
+                        ⏹️ Тоқтату
+                    </button>
+                    <button class="btn btn-clear" id="clearBtn">
+                        🗑️ Тазалау
+                    </button>
+                </div>
+
+                <div class="transcript-area" id="transcriptArea">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎤</div>
+                        <p style="font-size: 1.3em; margin-bottom: 15px;">
+                            Микрофонды қосу үшін "Бастау" батырмасын басыңыз
+                        </p>
+                        <p style="font-size: 1.1em; margin-bottom: 15px;">
+                            Дыбыс мәтінге айналып, осы жерде көрсетіледі
+                        </p>
+                        <p style="color: #ff4444; font-weight: bold; font-size: 1.1em;">
+                            ⚠️ Қауіпті сөздер қызыл түспен белгіленеді:
+                        </p>
+                        <p style="margin-top: 10px; font-size: 1em;">
+                            қауіп, өрт, жар, көмектесіңдер, тоқта, жүгір, қашып, помогите, огонь, danger, fire, help
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 20px;">
+                <h4>💡 Қалай пайдалану керек:</h4>
+                <p>
+                    1️⃣ Тілді таңдаңыз (Қазақ, Орыс немесе Ағылшын)<br>
+                    2️⃣ "Бастау" батырмасын басыңыз<br>
+                    3️⃣ Браузер микрофон рұқсатын сұрайды - "Allow/Рұқсат беру" басыңыз<br>
+                    4️⃣ Дыбыс шығарыңыз немесе сөйлеңіз<br>
+                    5️⃣ Мәтін автоматты түрде экранда пайда болады<br>
+                    6️⃣ Қауіпті сөздер қызыл түспен белгіленеді және дыбыс сигналы шығады
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Маңызды ескертулер:</h4>
+                <p>
+                    • HTTPS протоколы қажет (немесе localhost)<br>
+                    • Chrome, Edge, Safari браузерлері ұсынылады<br>
+                    • Firefox браузерінде қазақ тілі қолдамауы мүмкін<br>
+                    • Микрофон рұқсатын беру керек<br>
+                    • Интернет байланысы қажет (дыбыс тану үшін)
+                </p>
+            </div>
+        </div>
+
+        <!-- Circuit Tab -->
+        <div id="circuit" class="tab-content">
+            <div class="card">
+                <h2>🔌 Tinkercad электр сұлбасы</h2>
+                
+                <h3>Схема компоненттері:</h3>
+                
+                <div class="circuit-container">
+                    <div>
+                        <div class="component">
+                            <div class="component-icon">🎤</div>
+                            <div class="component-name">Дыбыс датчигі</div>
+                            <div class="component-desc">KY-038 Sound Sensor</div>
+                        </div>
+                        
+                        <div class="component">
+                            <div class="component-icon">🎛️</div>
+                            <div class="component-name">Arduino Uno</div>
+                            <div class="component-desc">Негізгі контроллер</div>
+                        </div>
+                        
+                        <div class="component">
+                            <div class="component-icon">📺</div>
+                            <div class="component-name">LCD 16x2</div>
+                            <div class="component-desc">I2C интерфейсімен</div>
+                        </div>
+                    </div>
+                    
+                    <div class="connection-line"></div>
+                    
+                    <div>
+                        <div class="component">
+                            <div class="component-icon">💡</div>
+                            <div class="component-name">LED қызыл</div>
+                            <div class="component-desc">Қауіп сигналы</div>
+                        </div>
+                        
+                        <div class="component">
+                            <div class="component-icon">🔊</div>
+                            <div class="component-name">Buzzer</div>
+                            <div class="component-desc">Дыбыс сигналы</div>
+                        </div>
+                        
+                        <div class="component">
+                            <div class="component-icon">📳</div>
+                            <div class="component-name">Вибромотор</div>
+                            <div class="component-desc">Тактильді ескерту</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Байланыс схемасы:</h3>
+                <div class="code-block">
+<span class="code-comment">// Arduino Uno пиндері:</span>
+
+<span class="code-comment">// Дыбыс датчигі (KY-038)</span>
+A0 → Sound Sensor (Analog Out)
+GND → Sound Sensor (GND)
+5V → Sound Sensor (VCC)
+
+<span class="code-comment">// LCD Дисплей (I2C)</span>
+A4 (SDA) → LCD (SDA)
+A5 (SCL) → LCD (SCL)
+GND → LCD (GND)
+5V → LCD (VCC)
+
+<span class="code-comment">// LED қауіп индикаторы</span>
+Pin 13 → LED (Anode) → 220Ω резистор → GND
+
+<span class="code-comment">// Buzzer (Дыбыс сигналы)</span>
+Pin 12 → Buzzer (+)
+GND → Buzzer (-)
+
+<span class="code-comment">// Вибромотор (Тактильді ескерту)</span>
+Pin 11 → Transistor (Base) → 1kΩ резистор
+5V → Motor (+)
+Motor (-) → Transistor (Collector)
+Transistor (Emitter) → GND
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Маңызды ескертулер:</h4>
+                    <p>
+                        • LED-ке міндетті түрде 220Ω резистор қосыңыз<br>
+                        • Вибромоторға транзистор қолданыңыз (BC547 немесе ұқсас)<br>
+                        • I2C LCD дисплейінің адресі әдетте 0x27 немесе 0x3F<br>
+                        • Tinkercad-та симуляция жасау үшін барлық компоненттер қол жетімді
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <h4>🔗 Tinkercad сілтемесі:</h4>
+                    <p>
+                        <strong>Өзіңіз жасау үшін:</strong><br>
+                        1. <a href="https://www.tinkercad.com" target="_blank" style="color: #2196f3;">tinkercad.com</a> сайтына кіріңіз<br>
+                        2. "Circuits" → "Create new Circuit" басыңыз<br>
+                        3. Жоғарыдағы компоненттерді қосып, схема бойынша қосыңыз<br>
+                        4. "Start Simulation" басып, тексеріңіз
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Components Tab -->
+        <div id="components" class="tab-content">
+            <div class="card">
+                <h2>🛠️ Жобаға қажетті компоненттер</h2>
+                
+                <div class="components-grid">
+                    <div class="component-card">
+                        <h4>🎛️ Arduino Uno R3</h4>
+                        <ul>
+                            <li>Негізгі контроллер</li>
+                            <li>ATmega328P микроконтроллері</li>
+                            <li>14 цифрлық пин</li>
+                            <li>6 аналогтық пин</li>
+                            <li>Баға: ~3000-4000 тг</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>🎤 KY-038 Дыбыс датчигі</h4>
+                        <ul>
+                            <li>Дыбыс деңгейін өлшейді</li>
+                            <li>Аналогтық және цифрлық шығыс</li>
+                            <li>Сезімталдық реттегіші</li>
+                            <li>3.3V-5V қуаттандыру</li>
+                            <li>Баға: ~300-500 тг</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>📺 LCD 16x2 I2C</h4>
+                        <ul>
+                            <li>16 бағандық, 2 жолды</li>
+                            <li>I2C интерфейсі (тек 4 пин)</li>
+                            <li>Көк немесе жасыл түспен</li>
+                            <li>Кириллицаны қолдайды</li>
+                            <li>Баға: ~1500-2000 тг</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>💡 LED диод (қызыл)</h4>
+                        <ul>
+                            <li>5мм қызыл LED</li>
+                            <li>220Ω резистор</li>
+                            <li>Қауіп индикаторы</li>
+                            <li>3V жұмыс кернеуі</li>
+                            <li>Баға: ~50-100 тг</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>🔊 Buzzer (Зуммер)</h4>
+                        <ul>
+                            <li>Активті немесе пассивті</li>
+                            <li>5V қуаттандыру</li>
+                            <li>Дыбыс сигналы беру</li>
+                            <li>85dB дыбыс деңгейі</li>
+                            <li>Баға: ~200-300 тг</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>📳 Вибромотор</h4>
+                        <ul>
+                            <li>3V DC вибромотор</li>
+                            <li>Тактильді кері байланыс</li>
+                            <li>BC547 транзистор</li>
+                            <li>1kΩ резистор</li>
+                            <li>Баға: ~300-500 тг</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>🔌 Қосымша материалдар</h4>
+                        <ul>
+                            <li>Breadboard (макетная плата)</li>
+                            <li>Қосқыш сымдар (Jumper wires)</li>
+                            <li>USB кабель (Arduino-ға)</li>
+                            <li>9V батарея + холдер</li>
+                            <li>Баға: ~2000-3000 тг</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>💰 Жалпы құны</h4>
+                        <ul>
+                            <li>Arduino Uno: 3500 тг</li>
+                            <li>Барлық датчиктер: 2500 тг</li>
+                            <li>LCD дисплей: 1800 тг</li>
+                            <li>Қосымша: 2000 тг</li>
+                            <li><strong>ЖАЛПЫ: ~10,000 тг</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 30px;">
+                    <h4>🛒 Қайдан сатып алуға болады:</h4>
+                    <p>
+                        <strong>Алматыда:</strong> Радиорынок (Барыс базары), Компьютерная техника<br>
+                        <strong>Онлайн:</strong> kaspi.kz, satu.kz, aliexpress.com<br>
+                        <strong>Tinkercad:</strong> Тегін онлайн симуляция - tinkercad.com
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Tab -->
+        <div id="code" class="tab-content">
+            <div class="card">
+                <h2>💻 Arduino коды</h2>
+                
+                <h3>1. Кітапханаларды орнату:</h3>
+                <div class="info-box">
+                    <p>Arduino IDE-де: <strong>Sketch → Include Library → Manage Libraries</strong></p>
+                    <p>Іздеңіз және орнатыңыз: <strong>LiquidCrystal I2C</strong></p>
+                </div>
+
+                <h3>2. Толық Arduino коды:</h3>
+                <div class="code-block">
+<span class="code-comment">// Естімейтін адамдарға арналған құрылғы</span>
+<span class="code-comment">// Дыбысты анықтап, LCD дисплейде көрсетеді</span>
+
+<span class="code-keyword">#include</span> <span class="code-string">&lt;Wire.h&gt;</span>
+<span class="code-keyword">#include</span> <span class="code-string">&lt;LiquidCrystal_I2C.h&gt;</span>
+
+<span class="code-comment">// Пиндерді анықтау</span>
+<span class="code-keyword">#define</span> SOUND_SENSOR <span class="code-number">A0</span>
+<span class="code-keyword">#define</span> LED_PIN <span class="code-number">13</span>
+<span class="code-keyword">#define</span> BUZZER_PIN <span class="code-number">12</span>
+<span class="code-keyword">#define</span> VIBRO_PIN <span class="code-number">11</span>
+
+<span class="code-comment">// LCD дисплей (адрес: 0x27)</span>
+LiquidCrystal_I2C <span class="code-function">lcd</span>(<span class="code-number">0x27</span>, <span class="code-number">16</span>, <span class="code-number">2</span>);
+
+<span class="code-keyword">int</span> soundValue = <span class="code-number">0</span>;
+<span class="code-keyword">int</span> threshold = <span class="code-number">500</span>;
+
+<span class="code-keyword">void</span> <span class="code-function">setup</span>() {
+  Serial.<span class="code-function">begin</span>(<span class="code-number">9600</span>);
+  
+  <span class="code-comment">// LCD бастау</span>
+  lcd.<span class="code-function">init</span>();
+  lcd.<span class="code-function">backlight</span>();
+  lcd.<span class="code-function">clear</span>();
+  lcd.<span class="code-function">setCursor</span>(<span class="code-number">0</span>, <span class="code-number">0</span>);
+  lcd.<span class="code-function">print</span>(<span class="code-string">"Sound Detector"</span>);
+  lcd.<span class="code-function">setCursor</span>(<span class="code-number">0</span>, <span class="code-number">1</span>);
+  lcd.<span class="code-function">print</span>(<span class="code-string">"Ready..."</span>);
+  
+  <span class="code-comment">// Пиндерді орнату</span>
+  <span class="code-function">pinMode</span>(LED_PIN, OUTPUT);
+  <span class="code-function">pinMode</span>(BUZZER_PIN, OUTPUT);
+  <span class="code-function">pinMode</span>(VIBRO_PIN, OUTPUT);
+  
+  <span class="code-function">delay</span>(<span class="code-number">2000</span>);
+  lcd.<span class="code-function">clear</span>();
+}
+
+<span class="code-keyword">void</span> <span class="code-function">loop</span>() {
+  <span class="code-comment">// Дыбыс деңгейін оқу</span>
+  soundValue = <span class="code-function">analogRead</span>(SOUND_SENSOR);
+  
+  <span class="code-comment">// LCD-де көрсету</span>
+  lcd.<span class="code-function">setCursor</span>(<span class="code-number">0</span>, <span class="code-number">0</span>);
+  lcd.<span class="code-function">print</span>(<span class="code-string">"Sound: "</span>);
+  lcd.<span class="code-function">print</span>(soundValue);
+  lcd.<span class="code-function">print</span>(<span class="code-string">"   "</span>);
+  
+  <span class="code-comment">// Егер дыбыс деңгейі жоғары болса</span>
+  <span class="code-keyword">if</span> (soundValue > threshold) {
+    <span class="code-comment">// ҚАУІП СИГНАЛЫ!</span>
+    lcd.<span class="code-function">setCursor</span>(<span class="code-number">0</span>, <span class="code-number">1</span>);
+    lcd.<span class="code-function">print</span>(<span class="code-string">"!!! QAUIP !!!"</span>);
+    
+    <span class="code-comment">// LED жыпылықтату</span>
+    <span class="code-function">digitalWrite</span>(LED_PIN, HIGH);
+    
+    <span class="code-comment">// Buzzer қосу</span>
+    <span class="code-function">tone</span>(BUZZER_PIN, <span class="code-number">1000</span>, <span class="code-number">200</span>);
+    
+    <span class="code-comment">// Вибрация қосу</span>
+    <span class="code-function">digitalWrite</span>(VIBRO_PIN, HIGH);
+    <span class="code-function">delay</span>(<span class="code-number">500</span>);
+    
+    <span class="code-function">digitalWrite</span>(LED_PIN, LOW);
+    <span class="code-function">digitalWrite</span>(VIBRO_PIN, LOW);
+    
+  } <span class="code-keyword">else</span> {
+    <span class="code-comment">// Қалыпты жағдай</span>
+    lcd.<span class="code-function">setCursor</span>(<span class="code-number">0</span>, <span class="code-number">1</span>);
+    lcd.<span class="code-function">print</span>(<span class="code-string">"Qalypti       "</span>);
+    <span class="code-function">digitalWrite</span>(LED_PIN, LOW);
+  }
+  
+  <span class="code-function">delay</span>(<span class="code-number">100</span>);
+}
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Кодты теңшеу:</h4>
+                    <p>
+                        • <strong>threshold</strong> мәнін өзгертіңіз (дыбыс сезімталдығы)<br>
+                        • LCD адресін тексеріңіз (0x27 немесе 0x3F)<br>
+                        • Buzzer жиілігін өзгертуге болады (1000 Hz)<br>
+                        • Кідіру уақытын өзгертуге болады (delay мәндері)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Tab -->
+        <div id="info" class="tab-content">
+            <div class="card">
+                <h2>📖 Жоба туралы толық ақпарат</h2>
+                
+                <h3>🎯 Жобаның мақсаты:</h3>
+                <p style="line-height: 1.8; color: #333; margin-bottom: 20px;">
+                    Естімейтін адамдар үшін қоршаған ортадағы дыбыстарды визуалды және тактильді сигналдарға айналдыратын құрылғы жасау. Бұл құрылғы қауіпті жағдайларды (өрт, дабыл, адамдардың айқайлауы) анықтап, пайдаланушыны дереу хабардар етеді.
+                </p>
+
+                <h3>⚙️ Құрылғы қалай жұмыс істейді:</h3>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <h4>1️⃣ Дыбысты тану</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>🎤 KY-038 датчигі дыбыс деңгейін өлшейді</li>
+                            <li>📊 Аналогтық сигнал Arduino-ға жіберіледі</li>
+                            <li>🔢 Дыбыс деңгейі 0-1023 диапазонында</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>2️⃣ Деректерді өңдеу</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>💻 Arduino дыбыс деңгейін талдайды</li>
+                            <li>⚠️ Шектен асса - қауіп сигналы</li>
+                            <li>✅ Қалыпты болса - жалғасады</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>3️⃣ Хабарландыру</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>📺 LCD экранда мәтін көрсетіледі</li>
+                            <li>💡 Қызыл LED жыпылықтайды</li>
+                            <li>🔊 Buzzer дыбыс шығарады</li>
+                            <li>📳 Вибромотор тербеледі</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>🌟 Жобаның артықшылықтары:</h3>
+                <div class="info-box">
+                    <ul style="padding-left: 20px; line-height: 2;">
+                        <li><strong>Қолжетімді:</strong> Барлық компоненттер Қазақстанда сатылады</li>
+                        <li><strong>Арзан:</strong> Жалпы құны ~10,000 тг</li>
+                        <li><strong>Оңай:</strong> Жаңа бастаушыларға арналған</li>
+                        <li><strong>Тиімді:</strong> Нақты тіршілікте пайдалы</li>
+                        <li><strong>Кеңейтуге болады:</strong> Bluetooth, WiFi қосуға болады</li>
+                    </ul>
+                </div>
+
+                <h3>🚀 Болашақ жобалар:</h3>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <h4>📱 Мобильді қосымша</h4>
+                        <p>Bluetooth арқылы смартфонға хабарландыру жіберу</p>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>🤖 AI тану</h4>
+                        <p>Дыбыс түрлерін анықтау (есік қағу, сирена, т.б.)</p>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>☁️ IoT интеграциясы</h4>
+                        <p>Бұлтқа деректерді жіберу, статистика жинау</p>
+                    </div>
+
+                    <div class="component-card">
+                        <h4>⌚ Смарт-сағат</h4>
+                        <p>Тактильді хабарландыру білезікте</p>
+                    </div>
+                </div>
+
+                <h3>📚 Пайдалы ресурстар:</h3>
+                <div class="code-block" style="background: white; color: #333; border: 2px solid #667eea;">
+<strong>🔗 Tinkercad:</strong> https://www.tinkercad.com
+<strong>📖 Arduino туториалдар:</strong> https://www.arduino.cc/en/Tutorial
+<strong>🎓 Қазақша ресурстар:</strong> Arduino.kz, Makers.kz
+<strong>🛒 Компоненттер:</strong> kaspi.kz → Arduino Uno
+<strong>💬 Қауымдастық:</strong> Facebook - Arduino Kazakhstan
+                </div>
+
+                <h3>👨‍🏫 Жоба авторы туралы:</h3>
+                <div class="info-box">
+                    <p style="font-size: 1.1em; line-height: 1.8;">
+                        <strong>Жоба:</strong> Естімейтін адамдарға арналған құрылғы<br>
+                        <strong>Мақсат:</strong> Қоғамдық қауіпсіздікті арттыру<br>
+                        <strong>Технология:</strong> Arduino + IoT + AI<br>
+                        <strong>Деңгей:</strong> Орта (2-апта жобасы)<br>
+                        <strong>Құны:</strong> ~10,000 тг<br>
+                        <strong>Уақыт:</strong> 2 апта (жинау + бағдарламалау)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
